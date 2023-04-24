@@ -1,0 +1,42 @@
+import { Sku } from './Sku.interface';
+import { Meta } from './Meta.interface';
+import { Variant } from './Variant.interface';
+import { OfferStatus } from '../enums/OfferStatus';
+import { Platform } from '../enums/Platform';
+import { ProductType } from '../enums/ProductType';
+import { PublishingStatus } from '../enums/PublishingStatus';
+import { Album } from './Album.interface';
+
+export interface Offer {
+  id: number;
+  productId: string;
+  externalId?: string;
+  externalUrl?: string;
+  name: string;
+  description?: string;
+  source: Platform;
+  seller?: string;
+  vendor?: string;
+  merchantId: number;
+  available: boolean;
+  visible: boolean;
+  totalSales?: number;
+  minPrice?: number;
+  maxPrice?: number;
+  currency?: string;
+  sourceCategoryName?: string;
+  meta?: Meta[];
+  variants?: Variant[];
+  skus?: Sku[];
+  albums?: Album[];
+  threeDEnabled?: boolean;
+  threeDResource?: string;
+  type: ProductType;
+  status?: OfferStatus;
+  publishingStatus?: PublishingStatus;
+  dateCreated?: string;
+  dateLastModified?: string;
+  tagString?: string;
+  commissionRate?: number;
+  weightUnit?: string;
+}

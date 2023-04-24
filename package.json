@@ -1,0 +1,26 @@
+{
+  "name": "@violet/violet-js",
+  "version": "1.0.0",
+  "description": "Functions and interfaces for interacting with the Violet API",
+  "types": "index.d.ts",
+  "scripts": {
+    "build": "tsc && npm-dts --output dist/index.d.ts generate",
+    "postbuild": "cp package.json ./dist"
+  },
+  "peerDependencies": {
+    "axios": "^1.3.4"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.18",
+    "@types/react": "^18.0.27",
+    "@types/react-dom": "^18.0.10",
+    "@typescript-eslint/eslint-plugin": "^5.23.0",
+    "@typescript-eslint/parser": "^5.23.0",
+    "dts-generator": "^3.0.0",
+    "eslint": "^8.12.0",
+    "eslint-config-next": "^12.1.0",
+    "eslint-plugin-import": "^2.26.0",
+    "npm-dts": "^1.3.12",
+    "typescript": "4.6.2"
+  }
+}
