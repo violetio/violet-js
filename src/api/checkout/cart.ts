@@ -4,9 +4,36 @@ import { Order } from '../../interfaces/Order.interface';
 import { OrderAddress } from '../../interfaces/OrderAddress.interface';
 import { OrderCustomer } from '../../interfaces/OrderCustomer.interface';
 import { OrderShippingMethodWrapper } from '../../interfaces/OrderShippingMethodWrapper.interface';
+import { OrderSku } from '../../interfaces/OrderSku.interface';
 
 export const cartEndpoint = (cartId: string) =>
   `${getConfig().apiRootPath}/checkout/cart/${cartId}`;
+
+/**
+ * Creates a new empty cart.
+ * @see https://docs.violet.io/create-cart
+ * @param {string} baseCurrency
+ * @param {OrderSku[]} skus Optional array of skus to add to the cart after initialization.
+ * @param {boolean} [walletBasedCheckout=true]
+ * @param {string} referralId Associate the order with a user or affiliate in your systems.
+ * @param {string} appOrderId Associate the newly created cart to an ID in your systems.
+ */
+export const createCart = (
+  baseCurrency: string,
+  skus: Partial<OrderSku> &
+    Required<Pick<OrderSku, 'skuId' | 'quantity'>>[] = [],
+  walletBasedCheckout: boolean = true,
+  referralId?: string,
+  appOrderId?: string
+): Promise<AxiosResponse<Order, any>> => {
+  return axios.post<Order>(`${getConfig().apiRootPath}/checkout/cart`, {
+    baseCurrency,
+    skus,
+    walletBasedCheckout,
+    referralId,
+    appOrderId,
+  });
+};
 
 /**
  * Retrieves a single cart by its ID
@@ -15,6 +42,30 @@ export const cartEndpoint = (cartId: string) =>
  */
 export const getCart = (cartId: string): Promise<AxiosResponse<Order, any>> => {
   return axios.get<Order>(cartEndpoint(cartId));
+};
+
+/**
+ * Adds a SKU to the cart by its ID. Quantity will default to 1 if no quantity is passed.
+ * Quantities greater than 10 will default to 10.
+ * @see https://docs.violet.io/add-sku-to-cart
+ * @param {string} cartId
+ * @param {OrderSku} skusPayload
+ * @param {boolean} [price_cart=false]
+ */
+export const addSkusToCart = (
+  cartId: string,
+  orderSku: Partial<OrderSku> & Required<Pick<OrderSku, 'skuId' | 'quantity'>>,
+  priceCart: boolean = false
+): Promise<AxiosResponse<Order, any>> => {
+  return axios.post<Order>(
+    `${getConfig().apiRootPath}/checkout/cart/${cartId}/skus`,
+    orderSku,
+    {
+      params: {
+        priceCart,
+      },
+    }
+  );
 };
 
 /**

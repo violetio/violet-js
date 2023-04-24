@@ -1,8 +1,6 @@
 import { getConfig } from '../../api';
 import axios, { AxiosResponse } from 'axios';
 import { Offer } from '../../interfaces/Offer.interface';
-import { Order } from '../../interfaces/Order.interface';
-import { OrderSku } from '../../interfaces/OrderSku.interface';
 import { Page } from '../../interfaces/Page.interface';
 import { Product } from '../../interfaces/Product.interface';
 
@@ -35,56 +33,6 @@ export const getProduct = (
   productId: string
 ): Promise<AxiosResponse<Product, any>> => {
   return axios.get<Product>(getProductEndpoint(productId));
-};
-
-/**
- * Creates a new empty cart.
- * @see https://docs.violet.io/create-cart
- * @param {string} baseCurrency
- * @param {OrderSku[]} skus Optional array of skus to add to the cart after initialization.
- * @param {boolean} [walletBasedCheckout=true]
- * @param {string} referralId Associate the order with a user or affiliate in your systems.
- * @param {string} appOrderId Associate the newly created cart to an ID in your systems.
- */
-export const createCart = (
-  baseCurrency: string,
-  skus: Partial<OrderSku> &
-    Required<Pick<OrderSku, 'skuId' | 'quantity'>>[] = [],
-  walletBasedCheckout: boolean = true,
-  referralId?: string,
-  appOrderId?: string
-): Promise<AxiosResponse<Order, any>> => {
-  return axios.post<Order>(`${getConfig().apiRootPath}/checkout/cart`, {
-    baseCurrency,
-    skus,
-    walletBasedCheckout,
-    referralId,
-    appOrderId,
-  });
-};
-
-/**
- * Adds a SKU to the cart by its ID. Quantity will default to 1 if no quantity is passed.
- * Quantities greater than 10 will default to 10.
- * @see https://docs.violet.io/add-sku-to-cart
- * @param {string} cartId
- * @param {OrderSku} skusPayload
- * @param {boolean} [price_cart=false]
- */
-export const addSkusToCart = (
-  cartId: string,
-  orderSku: Partial<OrderSku> & Required<Pick<OrderSku, 'skuId' | 'quantity'>>,
-  priceCart: boolean = false
-): Promise<AxiosResponse<Order, any>> => {
-  return axios.post<Order>(
-    `${getConfig().apiRootPath}/checkout/cart/${cartId}/skus`,
-    orderSku,
-    {
-      params: {
-        priceCart,
-      },
-    }
-  );
 };
 
 /**
