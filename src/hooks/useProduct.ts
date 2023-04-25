@@ -38,22 +38,25 @@ const useProduct = (product?: Product) => {
    * @returns an array of ProductVariantValues sorted by the display order key.
    */
   const sortedVariantValuesMemo = useMemo(() => {
-    const result: { [key: string]: ProductVariantValue[] } = {};
-    sortedVariantsMemo?.forEach((variant) => {
-      const variantName = variant.name;
-      result[variantName] = [...variant.values].sort((a, b) => {
-        const aValue = a.displayOrder!;
-        const bValue = b.displayOrder!;
+    const result = sortedVariantsMemo?.reduce(
+      (result: { [key: string]: ProductVariantValue[] }, variant) => {
+        const variantName = variant.name;
+        result[variantName] = [...variant.values].sort((a, b) => {
+          const aValue = a.displayOrder!;
+          const bValue = b.displayOrder!;
 
-        if (aValue < bValue) {
-          return -1;
-        }
-        if (aValue > bValue) {
-          return 1;
-        }
-        return 0;
-      });
-    });
+          if (aValue < bValue) {
+            return -1;
+          }
+          if (aValue > bValue) {
+            return 1;
+          }
+          return 0;
+        });
+        return result;
+      },
+      {}
+    );
     return result;
   }, [sortedVariantsMemo]);
 

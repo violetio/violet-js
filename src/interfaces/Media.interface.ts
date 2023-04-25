@@ -2,12 +2,12 @@ import { MediaType } from '../enums/MediaType';
 
 export interface Media {
   id: number;
-  album_id: number;
-  external_id?: string;
+  albumId: number;
+  externalId?: string;
   cloudId?: string;
   url: string;
-  source_url: string;
+  sourceUrl: string;
   type: MediaType;
-  display_order: number;
+  displayOrder: number;
   primary?: boolean;
 }

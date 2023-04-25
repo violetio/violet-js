@@ -1,7 +1,7 @@
 export interface Category {
   id: string;
   name: string;
-  parent_id: string;
+  parentId: string;
   slug: string;
   depth: number;
 }

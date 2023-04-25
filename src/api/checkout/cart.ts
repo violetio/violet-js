@@ -149,7 +149,6 @@ export const applyCustomerInfoToCart = (
  * @see https://docs.violet.io/set-billing-address
  * @param cartId
  * @param billingAddress
- * @returns
  */
 export const applyBillingAddress = (
   cartId: string,

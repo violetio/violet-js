@@ -5,7 +5,7 @@ import { useCallback, useMemo } from 'react';
 /**
  * A custom hook that provides offer-related data including variants, variant values, and available SKU information.
  */
-const useOffer = (offer: Offer) => {
+const useOffer = (offer?: Offer) => {
   /**
    * Sort variant names by displayId
    * @returns an array of variants with available values.
@@ -16,17 +16,20 @@ const useOffer = (offer: Offer) => {
       return variants.filter((variant: Variant) => variant.values.length > 0);
     }
     return [];
-  }, [offer.variants]);
+  }, [offer?.variants]);
 
   /**
    * @returns an object of variant name to variant value array pairs
    */
   const variantValuesMemo = useMemo(() => {
-    const result: { [key: string]: VariantValue[] } = {};
-    variantsMemo?.forEach((variant) => {
-      const variantName = variant.name;
-      result[variantName] = variant.values;
-    });
+    const result = variantsMemo?.reduce(
+      (result: { [key: string]: VariantValue[] }, variant) => {
+        const variantName = variant.name;
+        result[variantName] = variant.values;
+        return result;
+      },
+      {}
+    );
     return result;
   }, [variantsMemo]);
 
