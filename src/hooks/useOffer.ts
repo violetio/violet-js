@@ -13,7 +13,19 @@ const useOffer = (offer?: Offer) => {
   const variantsMemo = useMemo(() => {
     if (offer?.variants) {
       const variants = [...offer.variants];
-      return variants.filter((variant: Variant) => variant.values.length > 0);
+      return variants
+        .filter((variant: Variant) => variant.values.length > 0)
+        .sort((a, b) => {
+          const aValue = a.name;
+          const bValue = b.name;
+          if (aValue < bValue) {
+            return -1;
+          }
+          if (aValue > bValue) {
+            return 1;
+          }
+          return 0;
+        });
     }
     return [];
   }, [offer?.variants]);
