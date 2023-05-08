@@ -144,7 +144,7 @@ const useOffer = (offer?: Offer) => {
       variantName: string,
       rowValue: string
     ) => {
-      return skusPerVariantCombination[
+      return !!skusPerVariantCombination[
         `${getSkusKey(selectedValues, variantName, rowValue)}`
       ].length;
     },

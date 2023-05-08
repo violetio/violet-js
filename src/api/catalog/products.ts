@@ -54,16 +54,14 @@ export const getMerchantOffers = (
  * @see TODO: Update docs
  */
 export const searchOffers = (
+  pageParams: { page: number; size: number } = { page: 1, size: 50 },
   offerSearchRequest?: OfferSearchRequest
 ): Promise<AxiosResponse<Page<Offer>, any>> => {
   return axios.post<Page<Offer>>(
     `${getConfig().apiRootPath}/catalog/offers/search`,
     offerSearchRequest || {},
     {
-      params: {
-        page: 1,
-        size: 50,
-      },
+      params: pageParams,
     }
   );
 };

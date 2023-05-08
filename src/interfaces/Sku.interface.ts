@@ -1,17 +1,17 @@
 import { SkuVariantValue } from './SkuVariantValue.interface';
 export interface Sku {
   id: number;
-  merchant_id: number;
+  merchantId: number;
   currency: string;
-  in_stock: boolean;
-  offer_id: number;
-  qty_available: number;
-  retail_price: number;
-  sale_price: number;
+  inStock: boolean;
+  offerId: number;
+  qtyAvailable: number;
+  retailPrice: number;
+  salePrice: number;
   status: string;
   quantity: number;
-  variant_values: SkuVariantValue[];
+  variantValues: SkuVariantValue[];
   thumbnail: string;
-  price: number;
+  price?: number;
   name: string;
 }

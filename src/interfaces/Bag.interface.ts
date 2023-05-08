@@ -18,7 +18,7 @@ export interface Bag {
   financialStatus: FinancialStatus;
   merchantName?: string;
   skus?: OrderSku[];
-  shippingMethod: OrderShippingMethod;
+  shippingMethod?: OrderShippingMethod;
   taxes?: OrderTax[];
   subTotal?: number;
   shippingTotal?: number;

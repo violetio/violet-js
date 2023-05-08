@@ -49,7 +49,7 @@ export const getCart = (cartId: string): Promise<AxiosResponse<Order, any>> => {
  * Quantities greater than 10 will default to 10.
  * @see https://docs.violet.io/add-sku-to-cart
  * @param {string} cartId
- * @param {OrderSku} skusPayload
+ * @param {OrderSku} orderSku
  * @param {boolean} [price_cart=false]
  */
 export const addSkusToCart = (
@@ -80,6 +80,24 @@ export const removeSkusFromCart = (
 ): Promise<AxiosResponse<Order, any>> => {
   return axios.delete<Order>(
     `${getConfig().apiRootPath}/checkout/cart/${cartId}/skus/${skuId}`
+  );
+};
+
+/**
+ * Updates an order SKU by its ID.
+ * @see https://docs.violet.io/update-sku-in-cart
+ * @param {string} cartId
+ * @param {string} skuId
+ * @param {OrderSku} orderSku
+ */
+export const updateSkuInCart = (
+  cartId: string,
+  skuId: string,
+  orderSku: Partial<OrderSku> & Required<Pick<OrderSku, 'skuId' | 'quantity'>>
+): Promise<AxiosResponse<Order, any>> => {
+  return axios.put<Order>(
+    `${getConfig().apiRootPath}/checkout/cart/${cartId}/skus/${skuId}`,
+    orderSku
   );
 };
 
