@@ -194,7 +194,7 @@ export const fetchShippingOptions = (
 
 /**
  * Confirm updated pricing on the order.
- * @see //TODO: Update docs to include this endpoint
+ * @see https://docs.violet.io/update-payment-transaction
  * @param {string} cartId
  */
 export const updatePricing = (
