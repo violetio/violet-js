@@ -51,7 +51,7 @@ export const getMerchantOffers = (
 
 /**
  * Search the complete offers available to your channel by using the available filters in the request body.
- * @see TODO: Update docs
+ * @see https://docs.violet.io/search-offers
  */
 export const searchOffers = (
   pageParams: { page: number; size: number } = { page: 1, size: 50 },
