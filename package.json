@@ -9,7 +9,7 @@
     "clean": "rm -rf dist",
     "prebuild": "npm run clean",
     "build": "webpack",
-    "postbuild": "tsc && jq '.main=\"umd/index.js\" | .module=\"umd/index.js\" | .types=\"types/index.d.ts\"' package.json > dist/package.json"
+    "postbuild": "jq '.main=\"umd/index.js\" | .module=\"umd/index.js\" | .types=\"types/index.d.ts\"' package.json > dist/package.json"
   },
   "browser": "umd/index.js",
   "dependencies": {
