@@ -54,7 +54,12 @@ export const getMerchantOffers = (
  * @see https://docs.violet.io/search-offers
  */
 export const searchOffers = (
-  pageParams: { page: number; size: number } = { page: 1, size: 50 },
+  pageParams: {
+    page: number;
+    size: number;
+    excludePublic?: boolean;
+    excludeHidden?: boolean;
+  } = { page: 1, size: 50, excludePublic: false, excludeHidden: false },
   offerSearchRequest?: OfferSearchRequest
 ): Promise<AxiosResponse<Page<Offer>, any>> => {
   return axios.post<Page<Offer>>(
