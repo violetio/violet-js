@@ -1,4 +1,4 @@
-import { getConfig } from '../../api';
+import { getConfig } from '../violetjs';
 import axios, { AxiosResponse } from 'axios';
 import { Order } from '../../interfaces/Order.interface';
 import { OrderAddress } from '../../interfaces/OrderAddress.interface';
