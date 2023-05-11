@@ -1,5 +1,5 @@
 {
-  "name": "@violet/violet-js",
+  "name": "@violetio/violet-js",
   "version": "1.0.0",
   "description": "Functions and interfaces for interacting with the Violet API",
   "main": "dist/umd/index.js",

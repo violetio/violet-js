@@ -11,7 +11,7 @@ module.exports = (_env, _argv) => {
     output: {
       path: path.resolve(__dirname, 'dist/umd'), // builds to ./dist/umd/
       filename: '[name].js', // index.js
-      library: '@violet/violetjs',
+      library: '@violetio/violet-js',
       libraryTarget: 'umd', // supports commonjs, amd and web browsers
       globalObject: 'this',
     },
