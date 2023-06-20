@@ -1,6 +1,6 @@
 {
   "name": "@violetio/violet-js",
-  "version": "1.0.2",
+  "version": "1.0.5",
   "description": "Functions and interfaces for interacting with the Violet API",
   "main": "dist/umd/index.js",
   "module": "dist/umd/index.js",
@@ -9,7 +9,7 @@
     "clean": "rm -rf dist",
     "prebuild": "npm run clean",
     "build": "webpack",
-    "postbuild": "jq '.main=\"umd/index.js\" | .module=\"umd/index.js\" | .types=\"types/index.d.ts\"' package.json > dist/package.json"
+    "postbuild": "jq '.main=\"umd/index.js\" | .module=\"umd/index.js\" | .types=\"types/index.d.ts\"' package.json > dist/package.json && cp README.md dist/README.md"
   },
   "browser": "umd/index.js",
   "peerDependencies": {
