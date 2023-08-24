@@ -5,7 +5,7 @@ import { Page } from '../../interfaces/Page.interface';
 
 /**
  * Retrieve a list of all the merchants that your app has access to.
- * @see https://docs.violet.io/view-merchants
+ * @see https://docs.violet.io/api-reference/merchant-service/merchants-merchant/get-merchants
  * @param {string} cartId
  */
 export const getMerchants = (): Promise<AxiosResponse<Page<Merchant>, any>> => {
